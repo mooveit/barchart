@@ -25,4 +25,10 @@
         android:layout_below="@id/monthlychart"
         android:background="@drawable/chartcalendarborder"/>
 
+    <ListView
+        android:id="@+id/monthlylist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/myRectangleView"/>
+
 </RelativeLayout>

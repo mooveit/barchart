@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ideyatech.barchart.R;
 import com.ideyatech.barchart.ui.beans.DashboardCalendarData;
 
 
@@ -37,14 +38,13 @@ public class CalendarAdapter extends BaseAdapter {
      *
      */
     private class ViewHolder {
-        ImageView imageView;
-        TextView txtValue;
-        TextView txtRewardComment;
-        ImageView border;
+
+        TextView txtValueOfAny;
+        TextView txtAny;
+
     }
 
     /**
-     *
      * @param position
      * @param convertView
      * @param parent
@@ -59,37 +59,47 @@ public class CalendarAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.list_item, null);
             holder = new ViewHolder();
-            holder.txtRewardComment = (TextView) convertView.findViewById(R.id.desc);
-            holder.txtValue = (TextView) convertView.findViewById(R.id.title);
-            holder.imageView = (ImageView) convertView.findViewById(R.id.icon);
-            holder.border = (ImageView) convertView.findViewById(R.id.border);
+            holder.txtAny = (TextView) convertView.findViewById(R.id.any);
+            holder.txtValueOfAny = (TextView) convertView.findViewById(R.id.valueOfAny);
             convertView.setTag(holder);
         }
         else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        DashboardRowItem dashboardRowItem = (DashboardRowItem) getItem(position);
+        DashboardCalendarData listItem = (DashboardCalendarData) getItem(position);
 
-        holder.txtRewardComment.setText(dashboardRowItem.getRewardComment());
-        holder.txtValue.setText(dashboardRowItem.getValue());
-        holder.txtRewardComment.setTypeface(null, Typeface.ITALIC);
-        holder.imageView.setImageResource(dashboardRowItem.getImageId());
-        holder.border.setImageResource(R.drawable.fading_line);
+        holder.txtAny.setText((String)listItem.getA());
+        holder.txtValueOfAny.setText((String)listItem.getV());
+
 
         return convertView;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getCount() {
         return dashboardRowItems.size();
     }
 
+    /**
+     *
+     * @param position
+     * @return
+     */
     @Override
     public Object getItem(int position) {
         return dashboardRowItems.get(position);
     }
 
+    /**
+     *
+     * @param position
+     * @return
+     */
     @Override
     public long getItemId(int position) {
         return dashboardRowItems.indexOf(getItem(position));

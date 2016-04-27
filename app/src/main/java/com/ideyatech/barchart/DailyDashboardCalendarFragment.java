@@ -3,6 +3,7 @@ package com.ideyatech.barchart;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.ideyatech.barchart.ui.adapters.CalendarAdapter;
+import com.ideyatech.barchart.ui.beans.DashboardCalendarData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +26,10 @@ import java.util.List;
  */
 public class DailyDashboardCalendarFragment extends Fragment implements IDashboardCalendarFragment {
 
-    ListView listView;
-    List dashboardRowItems;
+
+
+
+
 
     /**
      *
@@ -80,19 +85,27 @@ public class DailyDashboardCalendarFragment extends Fragment implements IDashboa
         chart.setDrawGridBackground(false);
         chart.setVerticalFadingEdgeEnabled(true);
 
+        ListView listView;
+        List <DashboardCalendarData> dashboardRowItems;
 
-        dashboardRowItems = new ArrayList<DashboardRowItem>();
-        for (int i = 0; i < values.length; i++) {
-            DashboardRowItem item = new DashboardRowItem(images[i], values[i], rewardComment[i]);
-            dashboardRowItems.add(item);
-        }
+        dashboardRowItems = new ArrayList<DashboardCalendarData>();
+        dashboardRowItems.add(new DashboardCalendarData("1AM", "122"));
+        dashboardRowItems.add(new DashboardCalendarData("2AM", "122"));
+        dashboardRowItems.add(new DashboardCalendarData("3AM", "122"));
+        dashboardRowItems.add(new DashboardCalendarData("4AM", "122"));
+        dashboardRowItems.add(new DashboardCalendarData("5AM", "122"));
+        dashboardRowItems.add(new DashboardCalendarData("6AM", "122"));
+        dashboardRowItems.add(new DashboardCalendarData("7AM", "122"));
+        dashboardRowItems.add(new DashboardCalendarData("8AM", "122"));
+        dashboardRowItems.add(new DashboardCalendarData("9AM", "122"));
+        dashboardRowItems.add(new DashboardCalendarData("10AM","122"));
+        dashboardRowItems.add(new DashboardCalendarData("11AM","122"));
+        dashboardRowItems.add(new DashboardCalendarData("12AM", "122"));
 
-        listView = (ListView)  v.findViewById(R.id.hourlylist);
-        // No Border
-        listView.setDivider(null);
-        CustomBaseAdapter adapter = new CustomBaseAdapter(this, dashboardRowItems);
+
+        listView = (ListView)  v.findViewById(R.id.dailylist);
+        CalendarAdapter adapter = new CalendarAdapter(getActivity().getBaseContext(), dashboardRowItems);
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(this);
 
         return v;
     }

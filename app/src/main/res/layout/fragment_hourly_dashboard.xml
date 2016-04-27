@@ -28,13 +28,10 @@
         android:layout_below="@id/hourlychart"
         android:background="@drawable/chartcalendarborder"/>
 
-    <!-- LIST VIEW -->
-
     <ListView
         android:id="@+id/hourlylist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/myRectangleView"/>
-
 
 </RelativeLayout>
